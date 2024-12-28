@@ -16,6 +16,3 @@ ENV PATH $PATH:/root/.dotnet/tools
 
 # configure for https
 RUN dotnet dev-certs https
-# Symlink docker socket
-RUN ln -s "/var/run/docker-host.sock" "/var/run/docker.sock"
-
