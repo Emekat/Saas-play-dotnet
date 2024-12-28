@@ -5,6 +5,16 @@ VisualStudioVersion = 17.5.002.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoodHabits.Database", "GoodHabits.Database\GoodHabits.Database.csproj", "{AB89467C-186A-4A09-891C-14FD112F7FDB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoodHabits.Client", "GoodHabits.Client\GoodHabits.Client.csproj", "{7AC7EF0C-6A66-4401-BC6D-1B7661D2BC84}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoodHabits.HabitService", "GoodHabits.HabitService\GoodHabits.HabitService.csproj", "{E1DE3C2F-682E-49C0-B31D-97FE295CB1C2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{F9063904-21C7-4497-A141-F4576A8645E3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "unittests", "unittests", "{0D1ED591-9801-44C3-82A2-50EEB00D9EB5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoodHabits.HabitService.Tests", "tests\unittests\GoodHabits.HabitService.Tests\GoodHabits.HabitService.Tests.csproj", "{EEC4301A-ECE6-4101-A450-D596228AF2BE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,11 +25,27 @@ Global
 		{AB89467C-186A-4A09-891C-14FD112F7FDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AB89467C-186A-4A09-891C-14FD112F7FDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AB89467C-186A-4A09-891C-14FD112F7FDB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7AC7EF0C-6A66-4401-BC6D-1B7661D2BC84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7AC7EF0C-6A66-4401-BC6D-1B7661D2BC84}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7AC7EF0C-6A66-4401-BC6D-1B7661D2BC84}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7AC7EF0C-6A66-4401-BC6D-1B7661D2BC84}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E1DE3C2F-682E-49C0-B31D-97FE295CB1C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1DE3C2F-682E-49C0-B31D-97FE295CB1C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1DE3C2F-682E-49C0-B31D-97FE295CB1C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1DE3C2F-682E-49C0-B31D-97FE295CB1C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EEC4301A-ECE6-4101-A450-D596228AF2BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EEC4301A-ECE6-4101-A450-D596228AF2BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EEC4301A-ECE6-4101-A450-D596228AF2BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EEC4301A-ECE6-4101-A450-D596228AF2BE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8789E0B0-BC62-4179-87CE-E71D503D20C9}
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0D1ED591-9801-44C3-82A2-50EEB00D9EB5} = {F9063904-21C7-4497-A141-F4576A8645E3}
+		{EEC4301A-ECE6-4101-A450-D596228AF2BE} = {0D1ED591-9801-44C3-82A2-50EEB00D9EB5}
 	EndGlobalSection
 EndGlobal
