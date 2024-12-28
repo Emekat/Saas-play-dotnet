@@ -10,12 +10,10 @@ Credit goes to Andy Watt - Building Modern Saas Applications with C# and .Net. S
 
 ## Dev Container
    On VS code, after building with `docker compose up --build`, ensure postgresql is live by running:
-      docker exec -it postgres /bin/bash
-      psql
-      \l (ensure u find ur db)
-      /Users/emeka/Desktop/Screenshot 2024-12-28 at 7.11.03 AM.png
-
-      press F1 and select: Dev Container: "Build and Reopen container"
+      * docker exec -it postgres /bin/bash
+      * psql
+      * \l (ensure u find ur db)
+  Press F1 and select: Dev Container: "Build and Reopen container"
 
 ## Generating Migrations
 
