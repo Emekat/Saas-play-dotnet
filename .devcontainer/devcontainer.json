@@ -1,0 +1,35 @@
+{
+    "name": "SaaS-Book",
+    "dockerComposeFile": [
+        "../docker/docker-compose.yaml"
+    ],
+    "service": "dev-env",
+    "workspaceFolder": "/workspace",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-dotnettools.csharp",
+                "shardulm94.trailing-spaces",
+                "mikestead.dotenv",
+                "fernandoescolar.vscode-solution-explorer",
+                "jmrog.vscode-nuget-package-manager",
+                "patcx.vscode-nuget-gallery",
+                "pkief.material-icon-theme",
+                "ms-mssql.mssql",
+                "humao.rest-client",
+                "rangav.vscode-thunder-client",
+                "formulahendry.dotnet-test-explorer",
+                "kevin-chatham.aspnetcorerazor-html-css-class-completion",
+                "syncfusioninc.blazor-vscode-extensions",
+                "ms-ossdata.vscode-postgresql",
+                "uniquevision.vscode-plpgsql-lsp",
+                "ms-azuretools.vscode-azurefunctions",
+                "ms-azuretools.vscode-cosmosdb",
+                "ms-dotnettools.vscode-dotnet-runtime",
+                "ms-dotnettools.blazorwasm-companion",
+                "cweijan.vscode-postgresql-client2"
+            ]
+        }
+    },
+    "remoteUser": "root"
+}
