@@ -1,7 +1,11 @@
 # SaaS Book Project
 
-This project shows basic Saas concepts with .NET 9 and Postgresql on an Apple Silicon processor
-Credit goes to Andy Watt - Building Modern Saas Applications with C# and .Net
+This project shows basic Saas concepts with .NET 9 and Postgresql on an Apple Silicon processor.
+Credit goes to Andy Watt - Building Modern Saas Applications with C# and .Net. See the repo below
+
+## Additional Resources
+  I have applied some "fixes" relating to the dev container and I chose postgresql as my database, every credit goes to the contributors.
+  For more information and resources, you can visit the [GitHub repository](https://github.com/PacktPublishing/Building-Modern-SaaS-Applications-with-C-and-.NET/tree/main).
 
 ## Generating Migrations
 
@@ -16,5 +20,7 @@ To generate migrations, you need to use the `dotnet ef` command. Follow the step
     3. To apply the migration to the database, run:
 
         ```
-        dotnet ef database update in GoodHabits.Database
+            dotnet ef database update in GoodHabits.Database
         ```
+
+     
