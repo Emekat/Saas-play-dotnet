@@ -1,0 +1,42 @@
+services:
+  postgres:
+    container_name: postgres
+    image: postgres
+    ports:
+      - "5433:5432"
+    volumes:
+      - habit-db-volume:/var/lib/postgresql/data/
+    env_file:
+      - postgresql/postgresql.env
+  dev-env:
+    container_name: dev-env
+    build:
+      context: ./dev-env
+    volumes:
+      - "..:/workspace"
+    stdin_open: true # docker run -i
+    tty: true # docker run -t
+volumes:
+  habit-db-volume: null
+  # web:
+  #   build: .
+  #   ports:
+  #     - "8000:8000"
+  #   volumes:
+  #     - .:/code
+  #   depends_on:
+  #     - db
+  # sql_server:
+  #   container_name: sqlserver
+  #   image: mcr.microsoft.com/azure-sql-edge:latest
+  #   ports:
+  #     - "9876:1433"
+  #   volumes:
+  #     - ./sqlserver/data:/var/opt/mssql/data/
+  #   env_file:
+  #     - sqlserver/sqlserver.env
+  #   environment:
+  #     - ACCEPT_EULA=Y
+  #     - SA_PASSWORD=Password1234
+
+  #https://www.postgresql.org/docs/current/libpq-envars.html
