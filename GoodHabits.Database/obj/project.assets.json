@@ -2816,19 +2816,19 @@
     ]
   },
   "packageFolders": {
-    "/Users/emeka/.nuget/packages/": {}
+    "/root/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/emeka/Documents/learning/ASP.NET/saas-book/GoodHabits.Database/GoodHabits.Database.csproj",
+      "projectUniqueName": "/workspace/GoodHabits.Database/GoodHabits.Database.csproj",
       "projectName": "GoodHabits.Database",
-      "projectPath": "/Users/emeka/Documents/learning/ASP.NET/saas-book/GoodHabits.Database/GoodHabits.Database.csproj",
-      "packagesPath": "/Users/emeka/.nuget/packages/",
-      "outputPath": "/Users/emeka/Documents/learning/ASP.NET/saas-book/GoodHabits.Database/obj/",
+      "projectPath": "/workspace/GoodHabits.Database/GoodHabits.Database.csproj",
+      "packagesPath": "/root/.nuget/packages/",
+      "outputPath": "/workspace/GoodHabits.Database/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/emeka/.nuget/NuGet/NuGet.Config"
+        "/root/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
@@ -2899,7 +2899,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.101/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/9.0.101/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

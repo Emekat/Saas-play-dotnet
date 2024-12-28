@@ -1,11 +1,21 @@
 # SaaS Book Project
 
 This project shows basic Saas concepts with .NET 9 and Postgresql on an Apple Silicon processor.
+
 Credit goes to Andy Watt - Building Modern Saas Applications with C# and .Net. See the repo below
 
 ## Additional Resources
   I have applied some "fixes" relating to the dev container and I chose postgresql as my database, every credit goes to the contributors.
   For more information and resources, you can visit the [GitHub repository](https://github.com/PacktPublishing/Building-Modern-SaaS-Applications-with-C-and-.NET/tree/main).
+
+## Dev Container
+   On VS code, after building with `docker compose up --build`, ensure postgresql is live by running:
+      docker exec -it postgres /bin/bash
+      psql
+      \l (ensure u find ur db)
+      /Users/emeka/Desktop/Screenshot 2024-12-28 at 7.11.03 AM.png
+
+      press F1 and select: Dev Container: "Build and Reopen container"
 
 ## Generating Migrations
 
@@ -24,3 +34,33 @@ To generate migrations, you need to use the `dotnet ef` command. Follow the step
         ```
 
      
+Credit goes to Andy Watt - Building Modern Saas Applications with C# and .Net. See the repo below
+
+## Additional Resources
+  I have applied some "fixes" relating to the dev container and I chose postgresql as my database, every credit goes to the contributors.
+  For more information and resources, you can visit the [GitHub repository](https://github.com/PacktPublishing/Building-Modern-SaaS-Applications-with-C-and-.NET/tree/main).
+
+## Dev Container
+   On VS code, after building with `docker compose up --build`, ensure postgresql is live by running:
+      docker exec -it postgres /bin/bash
+      psql
+      \l (ensure u find ur db)
+      /Users/emeka/Desktop/Screenshot 2024-12-28 at 7.11.03 AM.png
+
+      press F1 and select: Dev Container: "Build and Reopen container"
+
+## Generating Migrations
+
+To generate migrations, you need to use the `dotnet ef` command. Follow the steps below:
+
+1. Open a terminal and navigate to the project directory.
+2. Run the following command to add a new migration:
+
+    ```
+    dotnet ef migrations add <MigrationName>
+    ```
+    3. To apply the migration to the database, run:
+
+        ```
+            dotnet ef database update in GoodHabits.Database
+        ```
