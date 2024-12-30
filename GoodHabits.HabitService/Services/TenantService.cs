@@ -20,7 +20,14 @@ public class TenantService : ITenantService
         {
             if(_httpContext.Request.Headers.TryGetValue("X-TenantName", out var tenantName))
             {
-                SetTenant(tenantName);
+                if (!string.IsNullOrEmpty(tenantName))
+                {
+                    SetTenant(tenantName!);
+                }
+                else
+                {
+                    throw new Exception("Tenant name is null or empty!");
+                }
             }
             else
             {
@@ -50,13 +57,6 @@ public class TenantService : ITenantService
             _tenant.ConnectionString = _tenantSettings.ConnectionString;
         }
     }
-    public string GetTenant()
-    {
-        return _tenant.TenantName;
-    }
-    public string GetConnectionString()
-    {
-        return _tenant.ConnectionString;
-    }
+    public Tenant GetTenant() => _tenant!;
+    public string GetConnectionString() => _tenant!.ConnectionString;
 }
-

@@ -1,5 +1,7 @@
+using GoodHabits.Database;
+
 public interface ITenantService
 {
-    public string GetTenant();
+    public Tenant GetTenant();
     public string GetConnectionString();
 }
