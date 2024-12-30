@@ -1,5 +1,6 @@
 using Microsoft.Extensions.Options;
 using GoodHabits.Database;
+using GoodHabits.Database.Interfaces;
 namespace GoodHabits.HabitService;
 
 /// <summary>
@@ -33,7 +34,7 @@ public class TenantService : ITenantService
             {
                 throw new Exception("Invalid Tenant!");
             }
-            }
+        }
     }
     private void SetTenant(string tenantName)
     {
@@ -54,7 +55,7 @@ public class TenantService : ITenantService
     {
         if (_tenant != null)
         {
-            _tenant.ConnectionString = _tenantSettings.ConnectionString;
+            _tenant.ConnectionString = _tenantSettings.DefaultConnectionString;
         }
     }
     public Tenant GetTenant() => _tenant!;

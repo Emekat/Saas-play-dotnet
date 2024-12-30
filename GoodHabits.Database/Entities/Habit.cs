@@ -1,3 +1,7 @@
+using GoodHabits.Database.Interfaces;
+
+namespace GoodHabits.Database.Entities;
+
 public record Habit : IHasTenant
 {
     public int Id { get; set; }

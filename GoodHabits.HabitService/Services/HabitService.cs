@@ -1,3 +1,4 @@
+using GoodHabits.Database.Entities;
 using Microsoft.EntityFrameworkCore;
 public class HabitService : IHabitService
 {

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using GoodHabits.Database.Entities;
 
 public interface IHabitService
 {
