@@ -5,7 +5,7 @@ public static class ServiceCollectionExtensions
     public static IServiceCollection AddAndMigrateDatabases(this IServiceCollection services,
     IConfiguration config)
     {
-        var options = config.Get<TenantSettings>();
+        var options = services.GetOptions<TenantSettings>(nameof(TenantSettings));
         var defaultConnectionString = options?.DefaultConnectionString;
 
         services.AddDbContextPool<GoodHabitsDbContext>(options =>
@@ -36,5 +36,15 @@ public static class ServiceCollectionExtensions
             }
         }
         return services;
+    }
+
+    public static T GetOptions<T>(this IServiceCollection services, string sectionName) where T : new()
+    {
+        using var serviceProvider = services.BuildServiceProvider();
+        var config = serviceProvider.GetRequiredService<IConfiguration>();
+        var section = config.GetSection(sectionName);
+        var options = new T();
+        section.Bind(options);
+        return options;
     }
 }
