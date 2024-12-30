@@ -1,12 +1,14 @@
+using GoodHabits.Database.Entities;
+using GoodHabits.Database.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 public class GoodHabitsDbContext : DbContext
 {
     private readonly ITenantService _tenantService;
-     public GoodHabitsDbContext(DbContextOptions<GoodHabitsDbContext> options, ITenantService tenantService) : base(options){
-        _tenantService = tenantService;
-     }
-    public string TenantName => _tenantService.GetTenant().TenantName;
+    public GoodHabitsDbContext(DbContextOptions<GoodHabitsDbContext> options, ITenantService tenantService) : base(options)
+       => _tenantService = tenantService;
+
+    public string TenantName => _tenantService.GetTenant()?.TenantName ?? String.Empty;
     public DbSet<Habit>? Habits { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
