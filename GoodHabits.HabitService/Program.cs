@@ -22,10 +22,9 @@ if (app.Environment.IsDevelopment())
     app.UseDeveloperExceptionPage();
     app.MapOpenApi();
 }
-app.MapControllers();
-app.UseRouting();
 
 app.UseHttpsRedirection();
-
-
+app.UseRouting();
+app.UseAuthorization();
+app.MapControllers();
 app.Run();
