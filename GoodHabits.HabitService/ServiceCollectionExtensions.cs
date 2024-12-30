@@ -10,7 +10,7 @@ public static class ServiceCollectionExtensions
 
         services.AddDbContextPool<GoodHabitsDbContext>(options =>
         {
-            options.UseNpgsql(defaultConnectionString);
+            options.UseNpgsql(e => e.MigrationsAssembly(typeof(GoodHabitsDbContext).Assembly.FullName));
         });
 
         var tenants = options?.Tenants;
