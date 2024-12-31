@@ -1,28 +1,28 @@
 using GoodHabits.Database;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 
 namespace GoodHabits.HabitService;
 public static class ServiceCollectionExtensions
 {
-    public static IServiceCollection AddAndMigrateDatabases(this IServiceCollection services,
-    IConfiguration config)
+    public static IServiceCollection AddAndMigrateDatabases(this IServiceCollection services)
     {
         var options = services.GetOptions<TenantSettings>(nameof(TenantSettings));
-        var defaultConnectionString = options?.DefaultConnectionString;
+        var defaultConnectionString = options.DefaultConnectionString;
 
-        services.AddDbContextPool<GoodHabitsDbContext>(options =>
+        services.AddDbContext<GoodHabitsDbContext>(opt =>
         {
-            options.UseNpgsql(e => e.MigrationsAssembly(typeof(GoodHabitsDbContext).Assembly.FullName));
+            opt.UseNpgsql(e => e.MigrationsAssembly(typeof(GoodHabitsDbContext).Assembly.FullName));
+            opt.ConfigureWarnings(warnings => warnings.Ignore(RelationalEventId.PendingModelChangesWarning));
         });
 
-        var tenants = options?.Tenants;
+        var tenants = options.Tenants;
         foreach (var tenant in tenants!)
         {
-            string connectionString = string.Empty;
-            if (!string.IsNullOrEmpty(tenant.ConnectionString))
+            string connectionString;
+            if (string.IsNullOrEmpty(tenant.ConnectionString))
             {
-                connectionString = defaultConnectionString!;
+                connectionString = defaultConnectionString;
             }
             else
             {
@@ -41,7 +41,7 @@ public static class ServiceCollectionExtensions
         return services;
     }
 
-    public static T GetOptions<T>(this IServiceCollection services, string sectionName) where T : new()
+    private static T GetOptions<T>(this IServiceCollection services, string sectionName) where T : new()
     {
         using var serviceProvider = services.BuildServiceProvider();
         var config = serviceProvider.GetRequiredService<IConfiguration>();
