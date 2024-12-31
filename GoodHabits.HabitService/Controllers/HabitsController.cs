@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 using GoodHabits.HabitService.Dtos;
-using GoodHabits.HabitService.Interfaces;
 namespace GoodHabits.HabitService.Controllers;
 
 [ApiController]
