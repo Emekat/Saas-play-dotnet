@@ -7,11 +7,11 @@ public class HabitsController : ControllerBase
 {
   private readonly IHabitService _habitService;
   private readonly ILogger<HabitsController> _logger;
-  public HabitsController(IHabitService habitService, ILogger<HabitsController> logger)
-  {
-    _habitService = habitService;
-    _logger = logger;
-  }
+    public HabitsController(IHabitService habitService, ILogger<HabitsController> logger)
+    {
+        _habitService = habitService;
+        _logger = logger;
+    }
 
     [HttpGet("{id}")]
     public async Task<IActionResult> GetAsync(int id)
