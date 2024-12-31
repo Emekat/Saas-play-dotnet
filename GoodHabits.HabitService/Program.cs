@@ -1,6 +1,8 @@
 using GoodHabits.Database;
 using GoodHabits.Database.Interfaces;
 using GoodHabits.HabitService;
+using GoodHabits.HabitService.Services;
+using Microsoft.AspNetCore.Mvc.NewtonsoftJson;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,7 +14,7 @@ builder.Services.AddControllers().AddNewtonsoftJson();
 builder.Services.AddTransient<IHabitService, HabitService>();
 builder.Services.AddTransient<ITenantService, TenantService>();
 builder.Services.Configure<TenantSettings>(builder.Configuration.GetSection(nameof(TenantSettings)));
-builder.Services.AddAndMigrateDatabases(builder.Configuration);
+builder.Services.AddAndMigrateDatabases();
 builder.Services.AddEndpointsApiExplorer();
 var app = builder.Build();
 

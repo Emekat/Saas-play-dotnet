@@ -2,7 +2,8 @@ namespace GoodHabits.Database;
 public class TenantSettings
 {
     public string DefaultConnectionString { get; set; } = string.Empty;
-    public List<Tenant> Tenants { get; set; } = new();
+    public string DefaultTenantName { get; set; } = string.Empty;
+    public List<Tenant?> Tenants { get; set; } = new();
 }
 public class Tenant
 {

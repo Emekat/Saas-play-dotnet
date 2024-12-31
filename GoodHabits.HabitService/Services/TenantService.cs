@@ -1,23 +1,24 @@
-using Microsoft.Extensions.Options;
 using GoodHabits.Database;
 using GoodHabits.Database.Interfaces;
+using Microsoft.Extensions.Options;
 
-namespace GoodHabits.HabitService;
+namespace GoodHabits.HabitService.Services;
 
 /// <summary>
-///intercepts incoming HTTP request, checks for tenant name in the header, sets the tenant and connection string
+/// intercepts incoming HTTP request, checks for tenant name in the header, sets the tenant and connection string
 ///
 /// </summary>
 public class TenantService : ITenantService
 {
     private readonly TenantSettings _tenantSettings;
-    private HttpContext? _httpContext;
+    private readonly HttpContext? _httpContext;
     private Tenant? _tenant;
 
     public TenantService(IOptions<TenantSettings> tenantSettings, IHttpContextAccessor httpContextAccessor)
     {
         _tenantSettings = tenantSettings.Value;
         _httpContext = httpContextAccessor.HttpContext;
+        SetDefaultTenant();
         if (_httpContext != null)
         {
             if(_httpContext.Request.Headers.TryGetValue("X-TenantName", out var tenantName))
@@ -37,28 +38,31 @@ public class TenantService : ITenantService
             }
         }
     }
+    
+    private void SetDefaultTenant()
+    {
+        _tenant = new Tenant { TenantName = _tenantSettings.DefaultTenantName, ConnectionString = _tenantSettings.DefaultConnectionString };
+    }
     private void SetTenant(string tenantName)
     {
         //should come from a db or cache, not appsettings
         //inject a repository in constructor
-        _tenant = _tenantSettings.Tenants.FirstOrDefault(t => t.TenantName == tenantName);
+        _tenant = _tenantSettings.Tenants.FirstOrDefault(t => t?.TenantName == tenantName);
         if(_tenant == null)
         {
             throw new Exception("Invalid Tenant!");
         }
         if(string.IsNullOrWhiteSpace(_tenant.ConnectionString))
         {
-            SetDefualtConnectionStringToCurrentTenant();
+            SetDefaultConnectionStringToCurrentTenant();
         }
     }
 
-    private void SetDefualtConnectionStringToCurrentTenant()
+    private void SetDefaultConnectionStringToCurrentTenant()
     {
-        if (_tenant != null)
-        {
-            _tenant.ConnectionString = _tenantSettings.DefaultConnectionString;
-        }
+        _tenant!.ConnectionString = _tenantSettings.DefaultConnectionString;
     }
     public Tenant GetTenant() => _tenant!;
+
     public string GetConnectionString() => _tenant!.ConnectionString;
 }
