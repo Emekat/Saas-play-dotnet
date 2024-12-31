@@ -30,7 +30,8 @@ public class GoodHabitsDbContext : DbContext
 
     public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
     {
-        ChangeTracker.Entries<IHasTenant>().Where(entry => entry.State == EntityState.Added || entry.State == EntityState.Modified).ToList()
+        ChangeTracker.Entries<IHasTenant>()
+        .Where(entry => entry.State == EntityState.Added || entry.State == EntityState.Modified).ToList()
         .ForEach(entry => entry.Entity.TenantName = TenantName);
 
         return await base.SaveChangesAsync(cancellationToken);
