@@ -1,21 +1,40 @@
+using GoodHabits.Database.Entities;
+using GoodHabits.Database.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
+namespace GoodHabits.Database;
 public class GoodHabitsDbContext : DbContext
 {
+    private readonly ITenantService _tenantService;
+    public GoodHabitsDbContext(DbContextOptions<GoodHabitsDbContext> options, ITenantService tenantService) : base(options)
+       => _tenantService = tenantService;
+
+    public string TenantName { get => _tenantService.GetTenant()?.TenantName ?? String.Empty; }
     public DbSet<Habit>? Habits { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseNpgsql("Host=localhost;PORT=5432;Database=mydb;Username=postgres;Password=password;");
+        var tenantConfigurationString =  _tenantService.GetConnectionString();
+        if (!string.IsNullOrEmpty(tenantConfigurationString))
+        {
+            optionsBuilder.UseNpgsql(_tenantService.GetConnectionString());
+        }
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Habit>().HasData(
-            new Habit { Id = 1, Name = "Exercise", Description = "Do some exercise" },
-            new Habit { Id = 2, Name = "Read", Description = "Read a book" },
-            new Habit { Id = 3, Name = "Meditate", Description = "Meditate for 10 minutes" },
-            new Habit { Id = 4, Name = "Write", Description = "Write a blog post" }
-        );
+        base.OnModelCreating(modelBuilder);
+        //only correct tenant can access their data
+        modelBuilder.Entity<Habit>().HasQueryFilter(a => a.TenantName == TenantName);
+        SeedData.Seed(modelBuilder);
+    }
+
+    public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+    {
+        ChangeTracker.Entries<IHasTenant>()
+        .Where(entry => entry.State == EntityState.Added || entry.State == EntityState.Modified).ToList()
+        .ForEach(entry => entry.Entity.TenantName = TenantName);
+
+        return await base.SaveChangesAsync(cancellationToken);
     }
 }

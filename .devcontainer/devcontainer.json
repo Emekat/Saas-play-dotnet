@@ -4,6 +4,7 @@
         "../docker/docker-compose.yaml"
     ],
     "service": "dev-env",
+    "postCreateCommand": "echo 'alias tch=\"touch\"' >> ~/.zshrc && source ~/.zshrc",
     "workspaceFolder": "/workspace",
     "customizations": {
         "vscode": {
@@ -27,7 +28,10 @@
                 "ms-azuretools.vscode-cosmosdb",
                 "ms-dotnettools.vscode-dotnet-runtime",
                 "ms-dotnettools.blazorwasm-companion",
-                "cweijan.vscode-postgresql-client2"
+                "cweijan.vscode-postgresql-client2",
+                "ms-vscode.azure-account",
+                "ms-vscode.azurecli",
+                "cardinal90.multi-cursor-case-preserve"
             ]
         }
     },
