@@ -28,7 +28,7 @@ public class GoodHabitsDbContext : DbContext
         SeedData.Seed(modelBuilder);
     }
 
-    public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+    public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
     {
         ChangeTracker.Entries<IHasTenant>().Where(entry => entry.State == EntityState.Added || entry.State == EntityState.Modified).ToList()
         .ForEach(entry => entry.Entity.TenantName = TenantName);
