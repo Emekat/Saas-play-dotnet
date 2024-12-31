@@ -8,7 +8,7 @@ public class GoodHabitsDbContext : DbContext
     public GoodHabitsDbContext(DbContextOptions<GoodHabitsDbContext> options, ITenantService tenantService) : base(options)
        => _tenantService = tenantService;
 
-    public string TenantName => _tenantService.GetTenant()?.TenantName ?? String.Empty;
+    public string TenantName { get => _tenantService.GetTenant()?.TenantName ?? String.Empty; }
     public DbSet<Habit>? Habits { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
