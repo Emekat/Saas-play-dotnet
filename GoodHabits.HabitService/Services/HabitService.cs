@@ -1,5 +1,8 @@
 using GoodHabits.Database.Entities;
+using GoodHabits.Database;
 using Microsoft.EntityFrameworkCore;
+
+namespace GoodHabits.HabitService;
 public class HabitService : IHabitService
 {
     private readonly GoodHabitsDbContext _dbContext;

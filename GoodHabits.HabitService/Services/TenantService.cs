@@ -1,6 +1,7 @@
 using Microsoft.Extensions.Options;
 using GoodHabits.Database;
 using GoodHabits.Database.Interfaces;
+
 namespace GoodHabits.HabitService;
 
 /// <summary>

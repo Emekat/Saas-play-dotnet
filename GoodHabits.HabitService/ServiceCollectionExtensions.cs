@@ -1,5 +1,8 @@
 using GoodHabits.Database;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+
+namespace GoodHabits.HabitService;
 public static class ServiceCollectionExtensions
 {
     public static IServiceCollection AddAndMigrateDatabases(this IServiceCollection services,
