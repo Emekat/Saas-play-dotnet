@@ -2,6 +2,7 @@ using GoodHabits.Database.Entities;
 using GoodHabits.Database.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
+namespace GoodHabits.HabitService;
 public class GoodHabitsDbContext : DbContext
 {
     private readonly ITenantService _tenantService;
